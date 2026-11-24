@@ -18,6 +18,9 @@ def main():
     with open(path, "w", encoding="utf-8") as f:
         f.write(ENTRY)
     os.chmod(path, 0o644)
+    # Verify the round-trip: exactly one line, no trailing newline added.
+    with open(path, encoding="utf-8") as f:
+        assert f.read() == ENTRY
 
 
 if __name__ == "__main__":
